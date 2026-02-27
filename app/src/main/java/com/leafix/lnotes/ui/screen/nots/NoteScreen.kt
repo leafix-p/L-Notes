@@ -1,22 +1,24 @@
-package com.leafix.lnotes.ui
+package com.leafix.lnotes.ui.screen.nots
 
-import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.WindowInsets
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Create
 import androidx.compose.material.icons.filled.Search
-import androidx.compose.material3.Divider
 import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material3.FloatingActionButton
 import androidx.compose.material3.Icon
 import androidx.compose.material3.ListItem
+import androidx.compose.material3.Scaffold
 import androidx.compose.material3.SearchBar
 import androidx.compose.material3.SearchBarDefaults
 import androidx.compose.material3.Text
@@ -74,10 +76,17 @@ fun NoteScreen(
                 }
             }
         }
-        LazyColumn(
-            modifier = Modifier
-                .fillMaxSize()
-        ) {
+        Scaffold(
+            floatingActionButton = {
+                AddButton()
+            }
+        ) { innerPadding ->
+            // 笔记列表
+            LazyColumn(
+                modifier = Modifier
+                    .fillMaxSize()
+                    .padding(innerPadding)
+            ) {
             items(20) {
                 ListItem(
                     headlineContent = { Text("笔记 $it") },
@@ -88,7 +97,70 @@ fun NoteScreen(
                     }
                 )
             }
+            }
         }
     }
 
+}
+
+///**
+// * 加号按钮
+// */
+//@Preview
+//@Composable
+//fun AddButton() {
+//    IconButton(
+//        onClick = {
+//            // TODO: 打开添加笔记界面
+//        },
+//        modifier = Modifier
+//            .clip(CircleShape)
+//            .size(48.dp)
+//            .background(Color.DarkGray),
+//        content = {
+//            Icon(
+//                imageVector = Icons.Default.Create,
+//                contentDescription = "Add",
+//                tint = Color.White,
+//            )
+//        }
+//    )
+//}
+
+///**
+// * 加号按钮
+// */
+//@Preview
+//@Composable
+//fun AddButton(onClick: () -> Unit = {}) {
+//    FilledIconButton(
+//        onClick = onClick,
+////        shape = RoundedCornerShape(12.dp),   // 圆角矩形
+//        shape = CircleShape,    // 圆形
+//        colors = IconButtonDefaults.filledIconButtonColors(
+//            containerColor = Color.Blue,
+//            contentColor = Color.White
+//        ),
+//        modifier = Modifier.size(48.dp)
+//    ) {
+//        Icon(Icons.Default.Create, contentDescription = "Add")
+//    }
+//}
+
+/**
+ * 悬浮按钮
+ */
+@Preview
+@Composable
+fun AddButton(onClick: () -> Unit = {}) {
+    FloatingActionButton(
+        onClick = onClick,
+//        shape = RoundedCornerShape(12.dp),   // 圆角矩形
+        shape = CircleShape,    // 圆形
+        containerColor = Color.LightGray,  // 背景色
+        contentColor = Color.White, // 图标颜色
+        modifier = Modifier.size(48.dp)
+    ) {
+        Icon(Icons.Default.Create, contentDescription = "Add")
+    }
 }

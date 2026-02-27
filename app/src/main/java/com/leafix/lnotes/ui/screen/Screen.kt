@@ -1,4 +1,4 @@
-package com.leafix.lnotes
+package com.leafix.lnotes.ui.screen
 
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.CheckCircle

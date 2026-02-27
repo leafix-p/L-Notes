@@ -1,4 +1,4 @@
-package com.leafix.lnotes.ui
+package com.leafix.lnotes.ui.screen.todo
 
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
